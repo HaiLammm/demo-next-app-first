@@ -1,4 +1,5 @@
 import Link from "next/link";
+import x from "./style/style.module.css";
 export default function Home() {
     return (
         <div>
@@ -7,7 +8,9 @@ export default function Home() {
                     <Link href={"./auth/signin/"}>Day la Trang dang nhap bang link</Link>
                 </li>
                 <li>
-                    <a href="./auth/singup/">Dang Ki:</a>
+                    <a className={x["red"]} href="./auth/singup/">
+                        Dang Ki:
+                    </a>
                 </li>
             </ul>
         </div>
