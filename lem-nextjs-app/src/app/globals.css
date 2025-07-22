@@ -127,9 +127,18 @@ footer {
   body {
     @apply bg-background text-foreground;
   }
-  h1,h2,h3 {
-        @apply text-red-500;
-    }
+  h1,
+  h2,
+  h3 {
+    @apply text-red-500;
+  }
 }
 
-@layer utilities {}
+@layer utilities {
+  .inter-uniquifier {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+  }
+}
