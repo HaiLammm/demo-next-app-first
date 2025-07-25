@@ -128,7 +128,7 @@ footer {
     @apply bg-background text-foreground;
   }
   h1,h2,h3 {
-        @apply text-red-500;
+        @apply text-black;
     }
 }
 
