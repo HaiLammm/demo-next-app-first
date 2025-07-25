@@ -83,33 +83,72 @@ const PersonalInfor = () => {
         >
           <h1 className="mb-4 text-lg font-semibold">Thông tin cá nhân</h1>
           <div className="flex gap-4">
-            <FormField
+            <div className="flex-col">
+              {" "}
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Ho va ten</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Nhap ho va ten o day" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="sex"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Gioi tinh</FormLabel>
+                    <FormControl>
+                      <select
+                        {...field}
+                        className="border rounded-md p-2 w-full"
+                      >
+                        <option value={"Nam"}>Nam</option>
+                        <option value={"Nu"}>Nu</option>
+                      </select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="flex-col">
+              <FormField
+                control={form.control}
+                name="phonenumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>So dien thoai</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Nhap ho va ten o day" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+                            <FormField
               control={form.control}
-              name="username"
+              name="hometown"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Ho va ten</FormLabel>
+                  <FormLabel>Que Quan</FormLabel>
                   <FormControl>
-                    <Input placeholder="Nhap ho va ten o day" {...field} />
+                    <Input placeholder="Nhap que quan" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="phonenumber"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>So dien thoai</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Nhap ho va ten o day" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
+            
+            </div>
+            <div className="flex-col">
+                            <FormField
               control={form.control}
               name="birthday"
               render={({ field }) => (
@@ -137,39 +176,7 @@ const PersonalInfor = () => {
                   <FormMessage />
                 </FormItem>
               )}
-            />
-          </div>
-          <div className="border rounded-md p-2 w-full h-8">
-            <FormField
-              control={form.control}
-              name="sex"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Gioi tinh</FormLabel>
-                  <FormControl>
-                    <select {...field} className="border rounded-md p-2 h-8">
-                      <option value={"Nam"}>Nam</option>
-                      <option value={"Nu"}>Nu</option>
-                    </select>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="hometown"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Que Quan</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Nhap que quan" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
+            />         <FormField
               control={form.control}
               name="nationality"
               render={({ field }) => (
@@ -182,6 +189,8 @@ const PersonalInfor = () => {
                 </FormItem>
               )}
             />
+
+          </div>
           </div>
         </form>
       </Form>
