@@ -79,12 +79,11 @@ const PersonalInfor = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 w-full max-w-[850px]"
+          className="space-y-2 w-full max-w-[850px]"
         >
           <h1 className="mb-4 text-lg font-semibold">Thông tin cá nhân</h1>
           <div className="flex gap-4">
-            <div className="flex-col">
-              {" "}
+            <div className="flex-col space-y-2">
               <FormField
                 control={form.control}
                 name="username"
@@ -92,7 +91,7 @@ const PersonalInfor = () => {
                   <FormItem>
                     <FormLabel>Ho va ten</FormLabel>
                     <FormControl>
-                      <Input placeholder="Nhap ho va ten o day" {...field} />
+                      <Input className=" max-w-[250px] "placeholder="Nhap ho va ten o day" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -107,7 +106,7 @@ const PersonalInfor = () => {
                     <FormControl>
                       <select
                         {...field}
-                        className="border rounded-md p-2 w-full"
+                        className="border rounded-md p-2 w-full  max-w-[250px] "
                       >
                         <option value={"Nam"}>Nam</option>
                         <option value={"Nu"}>Nu</option>
@@ -118,7 +117,7 @@ const PersonalInfor = () => {
                 )}
               />
             </div>
-            <div className="flex-col">
+            <div className="flex-col space-y-2">
               <FormField
                 control={form.control}
                 name="phonenumber"
@@ -132,65 +131,64 @@ const PersonalInfor = () => {
                   </FormItem>
                 )}
               />
-                            <FormField
-              control={form.control}
-              name="hometown"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Que Quan</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Nhap que quan" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            
+              <FormField
+                control={form.control}
+                name="hometown"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Que Quan</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Nhap que quan" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
-            <div className="flex-col">
-                            <FormField
-              control={form.control}
-              name="birthday"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Ngay thang nam sinh</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="date"
-                      value={
-                        field.value
-                          ? field.value.toISOString().split("T")[0]
-                          : ""
-                      }
-                      onChange={(e) => {
-                        const value = e.target.value
-                          ? new Date(e.target.value)
-                          : undefined;
-                        field.onChange(value);
-                      }}
-                      onBlur={field.onBlur}
-                      name={field.name}
-                      ref={field.ref}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />         <FormField
-              control={form.control}
-              name="nationality"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Quoc tich</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Quoc tich" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-          </div>
+            <div className="flex-col space-y-2">
+              <FormField
+                control={form.control}
+                name="birthday"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Ngay thang nam sinh</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="date"
+                        value={
+                          field.value
+                            ? field.value.toISOString().split("T")[0]
+                            : ""
+                        }
+                        onChange={(e) => {
+                          const value = e.target.value
+                            ? new Date(e.target.value)
+                            : undefined;
+                          field.onChange(value);
+                        }}
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        ref={field.ref}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />{" "}
+              <FormField
+                control={form.control}
+                name="nationality"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Quoc tich</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Quoc tich" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
           </div>
         </form>
       </Form>
