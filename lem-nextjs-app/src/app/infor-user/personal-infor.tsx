@@ -56,23 +56,37 @@ const formSchema = z.object({
     message: "Họ và tên chỉ được chứa chữ cái, không có số hoặc ký tự đặc biệt",
   }),
 });
-const PersonalInfor = () => {
+// Định nghĩa kiểu cho props
+interface PersonalInforProps {
+  isEditing: boolean;
+  data: {
+    username?: string;
+    phonenumber?: string;
+    birthday?: Date;
+    sex?: "Nam" | "Nu";
+    hometown?: string;
+    nationality?: string;
+  };
+  onSave: (data: z.infer<typeof formSchema>) => void;
+}
+const PersonalInfor = ({isEditing , data , onSave} : PersonalInforProps ) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     mode: "onBlur",
     defaultValues: {
-      username: undefined,
-      phonenumber: undefined,
-      birthday: undefined,
-      sex: undefined,
-      hometown: undefined,
-      nationality: undefined,
+ username: data.username,
+      phonenumber: data.phonenumber,
+      birthday: data.birthday,
+      sex: data.sex,
+      hometown: data.hometown,
+      nationality: data.nationality,
     },
   });
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+        onSave(values);
   }
   return (
     <div className="flex justify-center items-center">
@@ -91,7 +105,7 @@ const PersonalInfor = () => {
                   <FormItem>
                     <FormLabel>Ho va ten</FormLabel>
                     <FormControl>
-                      <Input className=" max-w-[250px] "placeholder="Nhap ho va ten o day" {...field} />
+                      <Input className=" max-w-[250px] "placeholder="Nhap ho va ten o day" {...field} disabled = {!isEditing} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -105,7 +119,7 @@ const PersonalInfor = () => {
                     <FormLabel>Gioi tinh</FormLabel>
                     <FormControl>
                       <select
-                        {...field}
+                        {...field} disabled = {!isEditing}
                         className="border rounded-md p-2 w-full  max-w-[250px] "
                       >
                         <option value={"Nam"}>Nam</option>
@@ -125,7 +139,7 @@ const PersonalInfor = () => {
                   <FormItem>
                     <FormLabel>So dien thoai</FormLabel>
                     <FormControl>
-                      <Input placeholder="Nhap ho va ten o day" {...field} />
+                      <Input placeholder="Nhap ho va ten o day" {...field} disabled = {!isEditing} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -138,7 +152,7 @@ const PersonalInfor = () => {
                   <FormItem>
                     <FormLabel>Que Quan</FormLabel>
                     <FormControl>
-                      <Input placeholder="Nhap que quan" {...field} />
+                      <Input placeholder="Nhap que quan" {...field} disabled = {!isEditing} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -182,7 +196,7 @@ const PersonalInfor = () => {
                   <FormItem>
                     <FormLabel>Quoc tich</FormLabel>
                     <FormControl>
-                      <Input placeholder="Quoc tich" {...field} />
+                      <Input placeholder="Quoc tich" {...field} disabled = {!isEditing} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
