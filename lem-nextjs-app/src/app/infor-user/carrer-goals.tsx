@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-const formSchema = z.object({
+export const formSchema = z.object({
   carrergoals: z
     .string()
     .min(2, { message: "Ho va ten phai co it nhat 2 ki tu" })
@@ -37,7 +37,7 @@ return ( <div className="flex justify-center items-center">
  <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 w-full max-w-[850px]"
+          className="space-y-4 w-full max-w-[850px] mt-6"
         >
           <h1 className="mb-4 text-lg font-semibold">Muc tieu nghe nghiep</h1>
                 <div className="overflow-hidden">

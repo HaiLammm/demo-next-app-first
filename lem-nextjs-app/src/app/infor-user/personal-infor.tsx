@@ -12,7 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-const formSchema = z.object({
+export const formSchemaPersonal = z.object({
   username: z
     .string()
     .min(2, { message: "Ho va ten phai co it nhat 2 ki tu" })
@@ -67,11 +67,11 @@ interface PersonalInforProps {
     hometown?: string;
     nationality?: string;
   };
-  onSave: (data: z.infer<typeof formSchema>) => void;
+  onSave: (data: z.infer<typeof formSchemaPersonal>) => void;
 }
 const PersonalInfor = ({isEditing , data , onSave} : PersonalInforProps ) => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof formSchemaPersonal>>({
+    resolver: zodResolver(formSchemaPersonal),
     mode: "onBlur",
     defaultValues: {
  username: data.username,
@@ -84,12 +84,12 @@ const PersonalInfor = ({isEditing , data , onSave} : PersonalInforProps ) => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof formSchemaPersonal>) {
     console.log(values);
         onSave(values);
   }
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center mt-6">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -122,8 +122,8 @@ const PersonalInfor = ({isEditing , data , onSave} : PersonalInforProps ) => {
                         {...field} disabled = {!isEditing}
                         className="border rounded-md p-2 w-full  max-w-[250px] "
                       >
-                        <option value={"Nam"}>Nam</option>
-                        <option value={"Nu"}>Nu</option>
+                        <option disabled = {!isEditing} value={"Nam"}>Nam</option>
+                        <option disabled = {!isEditing} value={"Nu"}>Nu</option>
                       </select>
                     </FormControl>
                     <FormMessage />
@@ -168,7 +168,7 @@ const PersonalInfor = ({isEditing , data , onSave} : PersonalInforProps ) => {
                     <FormLabel>Ngay thang nam sinh</FormLabel>
                     <FormControl>
                       <Input
-                        type="date"
+                        type="date" disabled = {!isEditing}
                         value={
                           field.value
                             ? field.value.toISOString().split("T")[0]

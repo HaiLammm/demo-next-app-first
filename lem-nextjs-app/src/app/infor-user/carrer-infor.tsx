@@ -60,7 +60,7 @@ const CarrerInfor = () =>{
     console.log(values);
   }
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center mt-6">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

@@ -28,24 +28,13 @@ const formSchema = z.object({
     .min(10)
     .max(11),
   additionalCertificates: z
-    .date()
-    .max(new Date(), { message: "Ngày sinh không được là ngày tương lai" })
-    .refine(
-      (date) => {
-        const today = new Date();
-        const birthDate = new Date(date);
-        let age = today.getFullYear() - birthDate.getFullYear();
-        const monthDiff = today.getMonth() - birthDate.getMonth();
-        if (
-          monthDiff < 0 ||
-          (monthDiff === 0 && today.getDate() < birthDate.getDate())
-        ) {
-          age--;
-        }
-        return age >= 18;
-      },
-      { message: "Bạn phải từ 18 tuổi trở lên" },
-    ),
+    .string()
+    .min(2, { message: "Ho va ten phai co it nhat 2 ki tu" })
+    .regex(/^[A-Za-z\s]+$/, {
+      message:
+        "Họ và tên chỉ được chứa chữ cái, không có số hoặc ký tự đặc biệt",
+    })
+    .max(50, { message: "Ho va ten qua dai" }),
   professionalskill: z.enum(["Nam", "Nu"]),
   keyAccompl: z
     .string()
@@ -79,7 +68,7 @@ const EducationLevel = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-2 w-full max-w-[850px]"
+          className="space-y-2 w-full max-w-[850px] mt-4"
         >
           <h1 className="mb-4 text-lg font-semibold">Trinh do hoc van</h1>
           <div className="flex gap-4">
